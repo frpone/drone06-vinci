@@ -12,7 +12,7 @@
 :root{
   --bg:#080B12; --bg2:#0A0E17; --panel:#111826; --border:#1E2740;
   --blue:#0052FF; --blue-lt:#3D82FF; --green:#2ECC8A; --orange:#F5A623;
-  --white:#EAF0FB; --mute:#8C9AB4; --grey:#5C6B85;
+  --white:#EAF0FB; --mute:#8C9AB4; --grey:#5C6B85; --cyan:#34E0E0;
   --disp:'Bricolage Grotesque',sans-serif; --body:'Manrope',sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -83,6 +83,32 @@ section{padding:112px 0;position:relative}
   font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--grey);line-height:1.7}
 .A{--tag:var(--blue-lt)}.B{--tag:var(--green)}.C{--tag:var(--orange)}
 
+/* how it works — schéma néophyte */
+.how-head{max-width:44ch;margin-bottom:40px}
+.how-head h2{font-family:var(--disp);font-weight:800;font-size:clamp(36px,5vw,64px);line-height:1;letter-spacing:-.025em;margin-top:14px}
+.how-head .sub{color:var(--mute);font-size:17px;margin-top:18px;max-width:64ch}
+.how-head .sub b{color:var(--white)}
+.schema{margin:0 0 34px;border:1px solid var(--border);border-radius:20px;overflow:hidden;position:relative;
+  background:radial-gradient(130% 130% at 50% -10%,#0e1729,#080b12 72%)}
+.schema::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(61,130,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(61,130,255,.07) 1px,transparent 1px);
+  background-size:34px 34px;mask-image:radial-gradient(ellipse at 50% 15%,#000 45%,transparent 88%)}
+.schema svg{display:block;width:100%;height:auto;position:relative;z-index:1;padding:14px 20px 0}
+.schema figcaption{position:relative;z-index:1;margin:8px 26px 22px;padding-top:16px;border-top:1px solid var(--border);
+  font-size:13.5px;color:var(--mute);line-height:1.6}
+.schema figcaption b{color:var(--cyan);font-weight:700}
+.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.steps{display:flex;flex-direction:column;gap:16px}
+.stepcard{background:linear-gradient(180deg,var(--panel),#0d1320);border:1px solid var(--border);border-radius:16px;padding:24px 24px}
+.stepcard .stepno{font-family:var(--disp);font-weight:800;font-size:12px;letter-spacing:.14em;color:var(--blue-lt)}
+.stepcard h3{font-size:19px;font-weight:700;margin:7px 0 9px}
+.stepcard p{color:var(--mute);font-size:14.5px}
+.metric{margin-top:18px;padding-top:15px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:4px}
+.metric .mlabel{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--grey)}
+.metric .mval{font-family:var(--disp);font-weight:800;font-size:21px;color:var(--white);line-height:1.05}
+.metric.hot{border-top-color:rgba(52,224,224,.4)}
+.metric.hot .mval{color:var(--cyan)}
+
 /* integration */
 .integ{background:linear-gradient(140deg,var(--blue),#0A2E8C);border-radius:28px;padding:64px 56px;position:relative;overflow:hidden}
 .integ::after{content:"";position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;
@@ -148,7 +174,7 @@ footer{padding:40px 0 60px;text-align:center;font-size:11px;letter-spacing:.2em;
     <div class="wrap">
       <div class="eyebrow reveal" style="animation-delay:.1s">Photogrammétrie drone · RTK centimétrique</div>
       <h1 class="reveal" style="animation-delay:.2s">Jumeaux numériques <em>haute précision.</em></h1>
-      <div class="chip reveal" style="animation-delay:.35s"><span class="dot"></span>&nbsp;Jusqu'à <b>&nbsp;1,5&nbsp;cm au sol&nbsp;</b> · intégrable dans votre système d'information</div>
+      <div class="chip reveal" style="animation-delay:.35s"><span class="dot"></span>&nbsp;Modèle 3D <b>&nbsp;précis à 1,5&nbsp;cm/pixel&nbsp;</b> · le drone, lui, reste à distance</div>
       <div class="hero-foot reveal" style="animation-delay:.5s">
         <span>Bâtiment</span><span>Infrastructure</span><span>Énergie</span><span>Réseaux</span>
       </div>
@@ -157,19 +183,112 @@ footer{padding:40px 0 60px;text-align:center;font-size:11px;letter-spacing:.2em;
   <div class="scroll-cue">Défiler</div>
 </header>
 
-<!-- CE QUE NOUS FAISONS -->
-<section>
-  <div class="wrap lead-row">
-    <div>
-      <div class="eyebrow">Ce que nous faisons</div>
-      <div class="rule"></div>
-      <div class="lead-media" style="background-image:url(twin-aerial.jpg)"></div>
-      <div class="lead-cap">Jumeau numérique · couches de données géoréférencées</div>
+<!-- COMMENT ÇA MARCHE -->
+<section id="how">
+  <div class="wrap">
+    <div class="how-head">
+      <div class="eyebrow">Notre méthode</div>
+      <h2>Le processus de&nbsp;photogrammétrie.</h2>
+      <p class="sub">Le drone vole à la <b>hauteur réglementaire</b> au-dessus du site, à distance de sécurité des installations. Nous intégrons ensuite l'ensemble de ces données pour reconstruire un <b>modèle 3D complet</b> de l'ouvrage, précis à 1,5 cm par pixel — entièrement calculé à partir des photos prises en vol.</p>
     </div>
-    <div>
-      <h2>Le réel, capté et reconstruit au centimètre.</h2>
-      <p>Nous survolons votre site au drone à très haute résolution — jusqu'à 1,5 cm au sol, positionnement RTK centimétrique. Chaque façade, chaque équipement, chaque détail devient une <b style="color:var(--white)">réplique 3D mesurée et géoréférencée</b>, dans le bon système de coordonnées.</p>
-      <p style="margin-top:16px;color:var(--blue-lt);font-weight:600">Pas un rendu synthétique. Votre ouvrage, exact et navigable.</p>
+
+    <figure class="schema">
+      <svg viewBox="0 -70 1000 430" role="img" aria-label="Le drone survole le poste électrique à la hauteur réglementaire, à distance de sécurité des câbles ; les photos servent ensuite à reconstruire un modèle 3D précis à 1,5 cm par pixel.">
+        <style>
+          .s-l{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;fill:#8C9AB4}
+          .s-n{font-family:'Manrope',sans-serif;font-size:12px;font-weight:800;letter-spacing:.05em;fill:#34E0E0}
+          .s-w{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;fill:#F5A623}
+        </style>
+        <defs>
+          <marker id="ar" markerWidth="9" markerHeight="9" refX="4.5" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9z" fill="#34E0E0"/></marker>
+          <g id="twr">
+            <path d="M-30 0L-25 -50L-20 -100L-15 -150L-10 -200M30 0L25 -50L20 -100L15 -150L10 -200M-30 0L30 0M-25 -50L25 -50M-20 -100L20 -100M-15 -150L15 -150M-10 -200L10 -200" fill="none" stroke="#3D82FF" stroke-width="1.5"/>
+            <path d="M-30 0L25 -50M30 0L-25 -50M-25 -50L20 -100M25 -50L-20 -100M-20 -100L15 -150M20 -100L-15 -150M-15 -150L10 -200M15 -150L-10 -200" fill="none" stroke="#2F4A7A" stroke-width="1"/>
+          </g>
+        </defs>
+
+        <!-- sol -->
+        <line x1="40" y1="316" x2="960" y2="316" stroke="#33436b" stroke-width="1.5"/>
+        <path d="M60 316l-9 9M110 316l-9 9M160 316l-9 9M210 316l-9 9M260 316l-9 9M310 316l-9 9M360 316l-9 9M410 316l-9 9M460 316l-9 9M510 316l-9 9M560 316l-9 9M610 316l-9 9M660 316l-9 9M710 316l-9 9" stroke="#26324f" stroke-width="1"/>
+
+        <!-- lignes HT entrantes -->
+        <path d="M44 96Q180 150 300 122" fill="none" stroke="#5C82CC" stroke-width="1.3"/>
+        <path d="M44 116Q180 168 300 140" fill="none" stroke="#5C82CC" stroke-width="1.3"/>
+        <path d="M44 136Q180 186 300 158" fill="none" stroke="#5C82CC" stroke-width="1.3"/>
+        <text class="s-w" x="46" y="80">⚡ LIGNES SOUS TENSION</text>
+
+        <!-- portiques -->
+        <use href="#twr" x="300" y="316"/>
+        <use href="#twr" x="560" y="316"/>
+
+        <!-- poutre / gantry -->
+        <path d="M300 116L560 116M300 134L560 134" stroke="#3D82FF" stroke-width="1.5" fill="none"/>
+        <path d="M312 116L312 134M364 116L364 134M416 116L416 134M468 116L468 134M520 116L520 134M548 116L548 134" stroke="#2F4A7A" stroke-width="1" fill="none"/>
+        <path d="M300 116L364 134M364 116L416 134M416 116L468 134M468 116L520 134M520 116L560 134" stroke="#2F4A7A" stroke-width="1" fill="none"/>
+
+        <!-- jeux de barres + isolateurs -->
+        <path d="M360 134L360 170M440 134L440 170M500 134L500 170" stroke="#6b7ba0" stroke-width="1"/>
+        <line x1="336" y1="170" x2="524" y2="170" stroke="#3D82FF" stroke-width="1.5"/>
+        <path d="M360 170L360 198M440 170L440 198M500 170L500 198" stroke="#6b7ba0" stroke-width="1"/>
+        <line x1="352" y1="198" x2="516" y2="198" stroke="#3D82FF" stroke-width="1.5"/>
+
+        <!-- liaison transfo -->
+        <path d="M524 198Q580 210 612 250" fill="none" stroke="#5C82CC" stroke-width="1.2"/>
+
+        <!-- transformateur -->
+        <rect x="600" y="252" width="74" height="64" fill="none" stroke="#3D82FF" stroke-width="1.5"/>
+        <path d="M676 258L686 258M676 268L686 268M676 278L686 278M676 288L686 288M676 298L686 298M676 308L686 308" stroke="#2F4A7A" stroke-width="1"/>
+        <path d="M612 252L612 240M636 252L636 240M660 252L660 240" stroke="#6b7ba0" stroke-width="1.4"/>
+        <circle cx="612" cy="238" r="2.4" fill="#3D82FF"/><circle cx="636" cy="238" r="2.4" fill="#3D82FF"/><circle cx="660" cy="238" r="2.4" fill="#3D82FF"/>
+        <text class="s-l" x="637" y="334" text-anchor="middle" style="font-size:9.5px">TRANSFORMATEUR</text>
+
+        <!-- cône de scan -->
+        <path d="M430 4L300 314L560 314Z" fill="#34E0E0" fill-opacity="0.05" stroke="none"/>
+        <path d="M430 4L330 314M430 4L390 314M430 4L470 314M430 4L530 314" stroke="#34E0E0" stroke-width="0.8" stroke-opacity="0.4" stroke-dasharray="3 5"/>
+        <path d="M404 36A34 34 0 0 1 456 36" fill="none" stroke="#34E0E0" stroke-width="1" stroke-opacity="0.5"/>
+        <path d="M392 52A50 50 0 0 1 468 52" fill="none" stroke="#34E0E0" stroke-width="1" stroke-opacity="0.32"/>
+
+        <!-- drone -->
+        <g stroke="#EAF0FB" stroke-width="1.6" fill="none">
+          <path d="M410 -10L392 -18M450 -10L468 -18"/>
+          <rect x="412" y="-16" width="36" height="13" rx="4"/>
+        </g>
+        <ellipse cx="392" cy="-20" rx="16" ry="3" fill="none" stroke="#3D82FF" stroke-width="1.4"/>
+        <ellipse cx="468" cy="-20" rx="16" ry="3" fill="none" stroke="#3D82FF" stroke-width="1.4"/>
+        <path d="M424 -3L430 4L436 -3Z" fill="#EAF0FB"/>
+        <circle cx="430" cy="3" r="2" fill="#34E0E0"/>
+        <text class="s-n" x="430" y="-30" text-anchor="middle">DRONE · CAPTATION RTK</text>
+
+        <!-- cote hauteur -->
+        <line x1="740" y1="-2" x2="740" y2="316" stroke="#34E0E0" stroke-width="1" stroke-dasharray="2 4" marker-start="url(#ar)" marker-end="url(#ar)"/>
+        <line x1="470" y1="-2" x2="740" y2="-2" stroke="#34E0E0" stroke-width="0.8" stroke-opacity="0.4" stroke-dasharray="2 5"/>
+        <text class="s-n" transform="translate(760,246) rotate(-90)">HAUTEUR DE VOL RÉGLEMENTÉE</text>
+        <text class="s-l" transform="translate(777,224) rotate(-90)">à distance de sécurité des câbles</text>
+
+        <text class="s-l" x="300" y="350" style="font-size:10px">POSTE ÉLECTRIQUE — VUE DE PROFIL</text>
+      </svg>
+      <figcaption>Le drone capte l'ouvrage depuis la <b>hauteur réglementaire</b>, à distance des lignes. Le modèle 3D à <b>1,5&nbsp;cm/pixel</b> est reconstruit ensuite, intégralement à partir des photos prises en vol.</figcaption>
+    </figure>
+
+    <div class="how-grid">
+      <div class="steps">
+        <div class="stepcard">
+          <span class="stepno">ÉTAPE 01 — SURVOL</span>
+          <h3>Captation à hauteur réglementaire</h3>
+          <p>Le drone vole à la hauteur réglementaire au-dessus du site, à distance de sécurité des câbles et des installations. Il photographie l'ouvrage sous tous les angles.</p>
+          <div class="metric"><span class="mlabel">Hauteur de vol · à distance</span><span class="mval">hauteur réglementaire</span></div>
+        </div>
+        <div class="stepcard">
+          <span class="stepno">ÉTAPE 02 — RECONSTRUCTION</span>
+          <h3>Modèle 3D calculé à partir des photos</h3>
+          <p>Nous intégrons les milliers de photos géoréférencées pour reconstruire une réplique 3D exacte de l'ouvrage — entièrement calculée à partir des images prises par le drone.</p>
+          <div class="metric hot"><span class="mlabel">Résolution du modèle 3D</span><span class="mval">1,5 cm / pixel</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="lead-media" style="background-image:url(twin-aerial.jpg)"></div>
+        <div class="lead-cap">Le jumeau numérique livré — mesurable au centimètre. Pas un rendu synthétique : votre ouvrage, exact et navigable.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -253,6 +372,7 @@ footer{padding:40px 0 60px;text-align:center;font-size:11px;letter-spacing:.2em;
         <div class="eyebrow">Un exemple : les ouvrages énergie</div>
         <h3 style="margin-top:14px">Postes, lignes, sites industriels.</h3>
         <p>Un poste électrique HT/THT est un cas d'école : jeux de barres, transformateurs, génie civil, extension d'une cellule. Le jumeau donne un état des lieux exact, un contrôle d'implantation et un tel-que-construit fiable — et, en option, un film cinématique de l'ouvrage (FPV, survols).</p>
+        <p style="margin-top:16px;color:var(--white);font-size:15.5px"><b style="color:var(--blue-lt)">Matériel adapté aux ouvrages sous tension</b> — nous opérons des drones RTK à évitement d'obstacles omnidirectionnel (type DJI Matrice 4E) : captation à distance de sécurité au téléobjectif, sans contact ni approche des conducteurs.</p>
         <div class="note">Zone sensible (proximité nucléaire, poste sous tension) : périmètre, hauteur de vol et autorisations cadrés au cas par cas.</div>
       </div>
       <div class="media" style="background-image:url(energy.jpg)"></div>
