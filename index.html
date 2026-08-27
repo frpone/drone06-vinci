@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Drone06 — Jumeaux numériques haute précision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080B12; --bg2:#0A0E17; --panel:#111826; --border:#1E2740;
+  --blue:#0052FF; --blue-lt:#3D82FF; --green:#2ECC8A; --orange:#F5A623;
+  --white:#EAF0FB; --mute:#8C9AB4; --grey:#5C6B85;
+  --disp:'Bricolage Grotesque',sans-serif; --body:'Manrope',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--body);
+  -webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
+/* grain + grid overlay */
+body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;
+  background-image:linear-gradient(rgba(61,130,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(61,130,255,.035) 1px,transparent 1px);
+  background-size:64px 64px;mask-image:radial-gradient(ellipse at 50% 0%,#000 30%,transparent 80%)}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px;position:relative;z-index:2}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--blue-lt)}
+.reveal{opacity:0;transform:translateY(24px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+@keyframes kb{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+
+/* ---------- NAV ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;
+  align-items:center;padding:20px 32px;backdrop-filter:blur(12px);
+  background:linear-gradient(180deg,rgba(8,11,18,.85),rgba(8,11,18,0));border-bottom:1px solid transparent}
+.brand{font-family:var(--disp);font-weight:800;font-size:20px;letter-spacing:-.01em}
+.brand span{color:var(--blue-lt)}
+.nav-cta{font-size:13px;font-weight:700;padding:9px 18px;border:1px solid var(--border);border-radius:100px;
+  transition:.25s;color:var(--white)}
+.nav-cta:hover{background:var(--blue);border-color:var(--blue)}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;height:100svh;min-height:640px;display:flex;align-items:flex-end;overflow:hidden}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(8,11,18,.55) 0%,rgba(8,11,18,.15) 35%,rgba(8,11,18,.75) 78%,var(--bg) 100%)}
+.hero-inner{position:relative;z-index:2;padding-bottom:76px;width:100%}
+.hero h1{font-family:var(--disp);font-weight:800;font-size:clamp(40px,7.2vw,104px);line-height:.98;
+  letter-spacing:-.03em;margin:18px 0 22px;max-width:15ch}
+.hero h1 em{font-style:normal;color:var(--blue-lt)}
+.chip{display:inline-flex;align-items:center;gap:9px;padding:9px 18px;border-radius:100px;
+  border:1px solid rgba(61,130,255,.4);background:rgba(61,130,255,.1);font-size:14px;font-weight:600}
+.chip b{color:#fff}.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
+.hero-foot{display:flex;gap:28px;margin-top:26px;flex-wrap:wrap;font-size:13px;color:var(--mute);font-weight:600}
+.scroll-cue{position:absolute;right:32px;bottom:34px;z-index:3;font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mute);writing-mode:vertical-rl;opacity:.8}
+
+/* ---------- SECTIONS ---------- */
+section{padding:112px 0;position:relative}
+.lead-row{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.lead-row h2{font-family:var(--disp);font-weight:800;font-size:clamp(28px,3.6vw,46px);line-height:1.04;letter-spacing:-.02em}
+.lead-row p{color:var(--mute);font-size:17px;margin-top:14px}
+.rule{width:56px;height:3px;background:var(--blue);margin:8px 0 0}
+
+/* deliverables */
+.sec-head{max-width:22ch;margin-bottom:52px}
+.sec-head h2{font-family:var(--disp);font-weight:800;font-size:clamp(30px,4vw,52px);line-height:1.02;letter-spacing:-.02em;margin-top:14px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:linear-gradient(180deg,var(--panel),#0d1320);border:1px solid var(--border);
+  border-radius:18px;padding:30px 26px 28px;position:relative;overflow:hidden;transition:.35s}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--tag)}
+.card:hover{transform:translateY(-6px);border-color:var(--tag)}
+.card .lt{font-family:var(--disp);font-weight:800;font-size:46px;line-height:1;color:var(--tag)}
+.card h3{font-size:19px;font-weight:700;margin:14px 0 10px}
+.card p{color:var(--mute);font-size:14.5px}
+.fmt{margin-top:20px;padding-top:18px;border-top:1px solid var(--border);
+  font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--grey);line-height:1.7}
+.A{--tag:var(--blue-lt)}.B{--tag:var(--green)}.C{--tag:var(--orange)}
+
+/* integration */
+.integ{background:linear-gradient(140deg,var(--blue),#0A2E8C);border-radius:28px;padding:64px 56px;position:relative;overflow:hidden}
+.integ::after{content:"";position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.14),transparent 70%)}
+.integ h2{font-family:var(--disp);font-weight:800;font-size:clamp(28px,3.4vw,44px);line-height:1.05;letter-spacing:-.02em;max-width:16ch}
+.integ p{color:#DDE9FF;font-size:17px;margin-top:20px;max-width:60ch}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.pill{padding:9px 18px;border:1px solid rgba(255,255,255,.35);border-radius:100px;font-size:13px;font-weight:700}
+
+/* references */
+.refs{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.ref{background:var(--panel);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:.35s}
+.ref:hover{transform:translateY(-6px);border-color:var(--blue-lt)}
+.ref .thumb{height:230px;background-size:cover;background-position:center;position:relative}
+.ref .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(17,24,38,.9))}
+.ref .body{padding:22px 24px 26px}
+.ref h4{font-size:19px;font-weight:700}
+.ref .sub{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--grey);margin-top:5px}
+.ref .open{display:inline-flex;align-items:center;gap:9px;margin-top:18px;padding:11px 20px;
+  background:var(--blue);border-radius:100px;font-size:13.5px;font-weight:700;transition:.25s}
+.ref .open:hover{background:var(--blue-lt);gap:13px}
+
+/* energy strip */
+.energy{display:grid;grid-template-columns:1.1fr 1fr;gap:44px;align-items:center;
+  background:var(--panel);border:1px solid var(--border);border-radius:22px;padding:44px 44px;overflow:hidden}
+.energy h3{font-family:var(--disp);font-weight:800;font-size:clamp(24px,3vw,38px);line-height:1.05;letter-spacing:-.02em}
+.energy p{color:var(--mute);font-size:15.5px;margin-top:14px}
+.energy .note{margin-top:16px;font-size:12.5px;color:var(--grey)}
+.energy .media{height:280px;border-radius:16px;background-size:cover;background-position:center;border:1px solid var(--border)}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,var(--blue),#0A2E8C);border-radius:28px;padding:72px 56px;text-align:left;position:relative;overflow:hidden}
+.cta h2{font-family:var(--disp);font-weight:800;font-size:clamp(34px,5vw,68px);line-height:1;letter-spacing:-.03em}
+.cta p{color:#DDE9FF;font-size:18px;margin-top:18px;max-width:52ch}
+.contact{display:flex;gap:56px;margin-top:44px;flex-wrap:wrap}
+.contact .lbl{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9FC0FF;margin-bottom:7px}
+.contact .val{font-size:16px;font-weight:700}
+.contact a.val:hover{text-decoration:underline}
+
+footer{padding:40px 0 60px;text-align:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);font-weight:700}
+
+@media(max-width:860px){
+  .lead-row,.cards,.refs,.energy{grid-template-columns:1fr}
+  .integ,.cta{padding:48px 30px}.energy{padding:30px}
+  .energy .media{height:220px}.wrap{padding:0 22px}
+  section{padding:80px 0}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">DRONE<span>06</span></div>
+  <a href="#contact" class="nav-cta">Nous contacter</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <video autoplay muted loop playsinline poster="poster.jpg">
+    <source src="montage.mp4" type="video/mp4">
+  </video>
+  <div class="hero-inner">
+    <div class="wrap">
+      <div class="eyebrow reveal" style="animation-delay:.1s">Photogrammétrie drone · RTK centimétrique</div>
+      <h1 class="reveal" style="animation-delay:.2s">Jumeaux numériques <em>haute précision.</em></h1>
+      <div class="chip reveal" style="animation-delay:.35s"><span class="dot"></span>&nbsp;Jusqu'à <b>&nbsp;1,5&nbsp;cm au sol&nbsp;</b> · intégrable dans votre système d'information</div>
+      <div class="hero-foot reveal" style="animation-delay:.5s">
+        <span>Bâtiment</span><span>Infrastructure</span><span>Énergie</span><span>Réseaux</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">Défiler</div>
+</header>
+
+<!-- CE QUE NOUS FAISONS -->
+<section>
+  <div class="wrap lead-row">
+    <div>
+      <div class="eyebrow">Ce que nous faisons</div>
+      <div class="rule"></div>
+    </div>
+    <div>
+      <h2>Le réel, capté et reconstruit au centimètre.</h2>
+      <p>Nous survolons votre site au drone à très haute résolution — jusqu'à 1,5 cm au sol, positionnement RTK centimétrique. Chaque façade, chaque équipement, chaque détail devient une <b style="color:var(--white)">réplique 3D mesurée et géoréférencée</b>, dans le bon système de coordonnées.</p>
+      <p style="margin-top:16px;color:var(--blue-lt);font-weight:600">Pas un rendu synthétique. Votre ouvrage, exact et navigable.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LIVRABLES -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Ce que vous recevez</div>
+      <h2>Trois niveaux,<br>toutes les données.</h2>
+    </div>
+    <div class="cards">
+      <div class="card A">
+        <div class="lt">A</div><h3>Le visualisateur en ligne</h3>
+        <p>Un lien à partager. Vos équipes explorent en 3D dans le navigateur, mesurent, annotent. Zéro logiciel à installer.</p>
+        <div class="fmt">Viewer Cesium · portail web privé · scènes &amp; captures</div>
+      </div>
+      <div class="card B">
+        <div class="lt">B</div><h3>Les données exploitables</h3>
+        <p>Les formats standards, prêts pour vos outils. Une couche de plus dans votre SIG / BIM / jumeau.</p>
+        <div class="fmt">Nuage LAS/LAZ · Ortho GeoTIFF/COG · MNT/MNS · Mesh OBJ+textures · 3D Tiles · GeoJSON/SHP/GPKG</div>
+      </div>
+      <div class="card C">
+        <div class="lt">C</div><h3>Le jeu de données complet</h3>
+        <p>Toute la campagne sur disque. Vous êtes autonome pour retraiter, archiver, auditer.</p>
+        <div class="fmt">Images brutes · logs RTK/PPK · projet de traitement · géoréférencement · rapports qualité</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATION -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="integ">
+      <div class="eyebrow" style="color:#BFD6FF">Intégration</div>
+      <h2 style="margin-top:14px">Une couche de plus dans votre système de données.</h2>
+      <p>Nos livrables sont aux formats ouverts de l'industrie : ils entrent directement dans vos plateformes BIM, vos SIG (QGIS, ArcGIS), vos outils de conception (AutoCAD, Revit) et vos jumeaux numériques d'exploitation — y compris une plateforme comme <b>TwinOps</b>. Quel que soit votre système, la donnée s'y ajoute comme une couche supplémentaire, géoréférencée et à jour.</p>
+      <p style="font-weight:700;color:#fff;margin-top:14px">Vous ne changez pas d'outil. Vous gagnez une vérité terrain mesurée.</p>
+      <div class="pills">
+        <span class="pill">BIM</span><span class="pill">SIG</span><span class="pill">AutoCAD / Revit</span>
+        <span class="pill">Cesium</span><span class="pill">TwinOps</span><span class="pill">ArcGIS / QGIS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Références — explorables en ligne</div>
+      <h2>Du travail réel, livré et navigable.</h2>
+    </div>
+    <div class="refs">
+      <div class="ref">
+        <div class="thumb" style="background-image:url(ref-massena.jpg)"></div>
+        <div class="body">
+          <h4>Place Masséna — Nice</h4>
+          <div class="sub">1,5 cm GSD · façades &amp; détails</div>
+          <a class="open" href="https://ion.cesium.com/stories/viewer/?id=c77ad169-7d5e-441d-8069-6c81037bf145" target="_blank" rel="noopener">▶ Ouvrir la démo 3D</a>
+        </div>
+      </div>
+      <div class="ref">
+        <div class="thumb" style="background-image:url(ref-ville.jpg)"></div>
+        <div class="body">
+          <h4>Ville + Port de Nice</h4>
+          <div class="sub">2,5 cm ville / 1,5 cm port · RTK</div>
+          <a class="open" href="https://ion.cesium.com/stories/viewer/?id=07b47f16-0388-4f22-a9e3-3e486285c629" target="_blank" rel="noopener">▶ Ouvrir la démo 3D</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENERGIE -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="energy">
+      <div>
+        <div class="eyebrow">Un exemple : les ouvrages énergie</div>
+        <h3 style="margin-top:14px">Postes, lignes, sites industriels.</h3>
+        <p>Un poste électrique HT/THT est un cas d'école : jeux de barres, transformateurs, génie civil, extension d'une cellule. Le jumeau donne un état des lieux exact, un contrôle d'implantation et un tel-que-construit fiable — et, en option, un film cinématique de l'ouvrage (FPV, survols).</p>
+        <div class="note">Zone sensible (proximité nucléaire, poste sous tension) : périmètre, hauteur de vol et autorisations cadrés au cas par cas.</div>
+      </div>
+      <div class="media" style="background-image:url(energy.jpg)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta">
+      <h2>Parlons de vos ouvrages.</h2>
+      <p>20 minutes suffisent pour identifier un premier site — bâtiment, infrastructure ou ouvrage énergie — et vous montrer ce que le jumeau apporterait à vos équipes.</p>
+      <div class="contact">
+        <div><div class="lbl">Web</div><a class="val" href="https://drone06.fr" target="_blank" rel="noopener">drone06.fr</a></div>
+        <div><div class="lbl">Contact</div><div class="val">François Peyranne</div></div>
+        <div><div class="lbl">Téléphone</div><a class="val" href="tel:+33662050169">06 62 05 01 69</a></div>
+        <div><div class="lbl">Email</div><a class="val" href="mailto:francoispeyranne@gmail.com">francoispeyranne@gmail.com</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>Drone06 — Photogrammétrie · RTK · Cesium · SIG · BIM · Nice, Côte d'Azur</footer>
+
+<script>
+// staggered reveal on scroll
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){
+  e.target.style.animation='kb .8s cubic-bezier(.2,.7,.2,1) forwards';io.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll('section .wrap > *, .card, .ref, .integ, .energy, .cta').forEach((el,i)=>{
+  el.style.opacity=0;el.style.animationDelay=(i%3*.08)+'s';io.observe(el)});
+// nav bg on scroll
+addEventListener('scroll',()=>{document.querySelector('nav').style.borderBottomColor=
+  scrollY>40?'var(--border)':'transparent'});
+</script>
+</body>
+</html>
