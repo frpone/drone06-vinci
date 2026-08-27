@@ -63,6 +63,10 @@ section{padding:112px 0;position:relative}
 .lead-row h2{font-family:var(--disp);font-weight:800;font-size:clamp(28px,3.6vw,46px);line-height:1.04;letter-spacing:-.02em}
 .lead-row p{color:var(--mute);font-size:17px;margin-top:14px}
 .rule{width:56px;height:3px;background:var(--blue);margin:8px 0 0}
+.lead-media{margin-top:30px;aspect-ratio:1/1;border-radius:16px;background-size:cover;background-position:center;
+  border:1px solid var(--border);position:relative;overflow:hidden;box-shadow:0 20px 50px -20px rgba(0,0,0,.6)}
+.lead-media::after{content:"";position:absolute;inset:0;box-shadow:inset 0 -70px 60px -40px rgba(8,11,18,.85)}
+.lead-cap{margin-top:14px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--grey)}
 
 /* deliverables */
 .sec-head{max-width:22ch;margin-bottom:52px}
@@ -159,6 +163,8 @@ footer{padding:40px 0 60px;text-align:center;font-size:11px;letter-spacing:.2em;
     <div>
       <div class="eyebrow">Ce que nous faisons</div>
       <div class="rule"></div>
+      <div class="lead-media" style="background-image:url(twin-aerial.jpg)"></div>
+      <div class="lead-cap">Jumeau numérique · couches de données géoréférencées</div>
     </div>
     <div>
       <h2>Le réel, capté et reconstruit au centimètre.</h2>
